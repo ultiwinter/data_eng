@@ -8,5 +8,3 @@ def main():
     print("Current Working Directory:", current_directory)
 
 
-
-    
