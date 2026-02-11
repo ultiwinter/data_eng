@@ -4,6 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pre-commit = "*"
+pydantic = "*"
+dotenv = "*"
+mysqlclient = "*"
+pyspark = "*"
+fastapi = "*"
+uvicorn = "*"
+apache-airflow = "*"
+flake8 = "*"
 
 [dev-packages]
 
