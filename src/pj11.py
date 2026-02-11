@@ -7,3 +7,7 @@ def main():
 
     # Print the current working directory
     print("Current Working Directory:", current_directory)
+
+
+if __name__ == "__main__":
+    main()
