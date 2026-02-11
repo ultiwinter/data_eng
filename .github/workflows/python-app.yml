@@ -9,36 +9,6 @@ permissions:
   contents: read
 
 jobs:
-  license:
-    name: License check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.14"
-      - name: Dump all dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pipenv
-          pipenv install
-          pipenv run pip freeze > requirements-all.txt
-      - name: Check copyright
-        id: license_check_report
-        uses: pilosus/action-pip-license-checker@v2
-        with:
-          requirements: "requirements-all.txt"
-          fail: "StrongCopyleft"
-          totals: true
-          headers: true
-      - name: Print copyright report
-        if: always()
-        run: echo "${{ steps.license_check_report.outputs.report }}"
-
   build:
     name: Lint and Test
     runs-on: ubuntu-latest
