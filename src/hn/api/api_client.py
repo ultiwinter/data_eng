@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-def get_top_stories(url: str, n: int = 5) -> List | None:
+def get_top_stories(url: str, n: int = 5) -> List[int]:
     """_summary_
 
     Args:
@@ -24,8 +24,8 @@ def get_top_stories(url: str, n: int = 5) -> List | None:
     
         return story_ids[:n]
 
-    except Exception as e:
-        print("Make sure the endpoint is reachable\n", e)
+    except requests.exceptions.RequestException as e:
+        raise RuntimeError("Failed to fetch top stories") from e
         
 
 def get_item_details(baseurl: str, item_id: int):
