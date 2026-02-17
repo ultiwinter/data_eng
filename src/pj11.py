@@ -7,3 +7,14 @@ def main():
 
     # Print the current working directory
     print("Current Working Directory:", current_directory)
+
+    # List all files and directories in the current working directory
+    items = os.listdir(current_directory)
+    print("Files and Directories in Current Working Directory:")
+
+    for item in items:
+        print(item)
+
+
+if __name__ == "__main__":
+    main()
