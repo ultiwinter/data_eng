@@ -6,8 +6,8 @@ import os
 
 load_dotenv()
 
-ITEM_BASEURL = os.getenv("ITEM_BASEURL")
-TOP_STORIES_ENDPOINT = os.getenv("TOP_STORIES_ENDPOINT")
+ITEM_BASEURL:str = os.getenv("ITEM_BASEURL")  # type: ignore
+TOP_STORIES_ENDPOINT = os.getenv("TOP_STORIES_ENDPOINT") # type: ignore
 
 if not ITEM_BASEURL or not TOP_STORIES_ENDPOINT:
     raise ValueError("ITEM_BASEURL or TOP_STORIES_ENDPOINT is not set")

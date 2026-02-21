@@ -55,8 +55,6 @@ if __name__ == "__main__":
     story_id= 47008560
     data = fetch_comments_recursive(ITEM_BASEURL, story_id) # type: ignore
     print(data)
-    #print(f"Story title: {data['story'].get('title')}")
-    #print(f"Total comments collected: {len(data['comments'])}")
     
     
     

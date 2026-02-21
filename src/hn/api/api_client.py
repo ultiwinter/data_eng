@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-def get_top_stories(url: str, n: int = 5) -> List[int]:
+def get_top_stories(url: str | None, n: int = 5) -> List[int]:
     """_summary_
 
     Args:
@@ -15,6 +15,9 @@ def get_top_stories(url: str, n: int = 5) -> List[int]:
     Returns:
         List: Stories IDs
     """
+    
+    if not url:
+        raise ValueError("TOP_STORIES_ENDPOINT is not set in env vars")
     
     try: 
         response = requests.get(url= url, timeout=10)
