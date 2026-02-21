@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-def get_top_stories(url: str, n: int = 5) -> List | None:
+def get_top_stories(url: str | None, n: int = 5) -> List[int]:
     """_summary_
 
     Args:
@@ -16,6 +16,9 @@ def get_top_stories(url: str, n: int = 5) -> List | None:
         List: Stories IDs
     """
     
+    if not url:
+        raise ValueError("TOP_STORIES_ENDPOINT is not set in env vars")
+    
     try: 
         response = requests.get(url= url, timeout=10)
         response.raise_for_status()
@@ -24,13 +27,13 @@ def get_top_stories(url: str, n: int = 5) -> List | None:
     
         return story_ids[:n]
 
-    except Exception as e:
-        print("Make sure the endpoint is reachable\n", e)
+    except requests.exceptions.RequestException as e:
+        raise RuntimeError("Failed to fetch top stories") from e
         
 
-def get_item_details(baseurl: str, story_id: int):
+def get_item_details(baseurl: str, item_id: int):
     
-    endpoint = f"{baseurl}{story_id}.json"
+    endpoint = f"{baseurl}{item_id}.json"
     
     try:
         response = requests.get(url= endpoint, timeout=10)
@@ -46,7 +49,7 @@ def get_item_details(baseurl: str, story_id: int):
 
 if __name__ == "__main__":
     TOP_STORIES_ENDPOINT = os.getenv("TOP_STORIES_ENDPOINT")
-    story_ids = get_top_stories(TOP_STORIES_ENDPOINT, n=10) # type: ignore
+    story_ids = get_top_stories(TOP_STORIES_ENDPOINT, n=1) # type: ignore
     print(story_ids)
     for story_id in story_ids: # type: ignore
         print(get_item_details("https://hacker-news.firebaseio.com/v0/item/", story_id))
