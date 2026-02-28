@@ -1,7 +1,7 @@
-from ..api.api_client import get_top_stories, get_item_details
+from ..api.api_client import get_top_stories
 from .fetch_comments import fetch_comments_recursive
 from dotenv import load_dotenv
-from typing import Dict, Any, List
+from typing import List
 import os
 
 load_dotenv()
