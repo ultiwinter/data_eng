@@ -1,1 +1,7 @@
 .env
+
+# Ignore data files
+data/
+
+# Ignore notes.md files
+notes.md
